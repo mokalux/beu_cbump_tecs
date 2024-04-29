@@ -294,13 +294,13 @@ function Options:onValueChanged(e)
 		g_bgmvolume = e.value -- keep actual value, change in setVolume()
 		local audio = Sound.new("audio/sfx/sfx_wpn_laser4.wav")
 		local channel = audio:play() -- feedback
-		channel:setVolume(g_bgmvolume)
+		channel:setVolume(g_bgmvolume*0.01)
 		self.bgmvolumeslider:setValue(g_bgmvolume)
 	elseif e.id == 2 then
 		g_sfxvolume = e.value -- keep actual value, change in setVolume()
 		local audio = Sound.new("audio/sfx/sfx_wpn_laser4.wav")
 		local channel = audio:play() -- feedback
-		channel:setVolume(g_sfxvolume)
+		channel:setVolume(g_sfxvolume*0.01)
 		self.sfxvolumeslider:setValue(g_sfxvolume)
 		for _, v in pairs(self.btns) do v:setVolume(g_sfxvolume*0.01) end -- change the ui buttons sfx volume
 	elseif e.id == 3 then

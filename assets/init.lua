@@ -12,7 +12,7 @@ myttf = TTFont.new("fonts/Cabin-Regular-TTF.ttf", 2.8*8) -- UI
 myttf2 = TTFont.new("fonts/Cabin-Regular-TTF.ttf", 1.5*8) -- HUD
 
 -- global bg
-g_bgimg = Bitmap.new(Texture.new("gfx/levels/beu_lvl1/beu_bg_lvl1_0001.png", false))
+g_bgimg = Bitmap.new(Texture.new("gfx/levels/beu_bg_lvl1_0001.png"))
 g_bgimg:setAnchorPoint(0.5, 0.5)
 g_bgimg:setPosition(myappwidth/2, myappheight/2)
 stage:addChild(g_bgimg)

@@ -5,7 +5,7 @@ function myLoadPrefs(xconfigfilepath)
 		mydata = {}
 		-- set prefs
 		mydata.g_language = g_language
-		mydata.g_currlevel = g_currlevel
+--		mydata.g_currlevel = g_currlevel
 		mydata.g_difficulty = g_difficulty
 		mydata.g_bgmvolume = g_bgmvolume
 		mydata.g_sfxvolume = g_sfxvolume
@@ -25,7 +25,7 @@ function myLoadPrefs(xconfigfilepath)
 	else -- prefs file exists, use it!
 		-- set prefs
 		g_language = mydata.g_language
-		g_currlevel = mydata.g_currlevel
+--		g_currlevel = mydata.g_currlevel
 		g_difficulty = mydata.g_difficulty
 		g_bgmvolume = mydata.g_bgmvolume
 		g_sfxvolume = mydata.g_sfxvolume
@@ -46,7 +46,7 @@ function mySavePrefs(xconfigfilepath)
 	local mydata = {} -- clear the table
 	-- set prefs
 	mydata.g_language = g_language
-	mydata.g_currlevel = g_currlevel
+--	mydata.g_currlevel = g_currlevel
 	mydata.g_difficulty = g_difficulty
 	mydata.g_bgmvolume = g_bgmvolume
 	mydata.g_sfxvolume = g_sfxvolume

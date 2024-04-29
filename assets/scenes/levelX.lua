@@ -25,9 +25,9 @@ function LevelX:init()
 	if g_currlevel == 1 then
 		drawbglevel = DrawLevelsTiled.new(
 			{
-				"gfx/levels/beu_lvl1b/untitled_0001.png",
-				"gfx/levels/beu_lvl1b/untitled_0002.png",
-				"gfx/levels/beu_lvl1b/untitled_0003.png",
+				"gfx/levels/beu_lvl1/untitled_0001.png",
+				"gfx/levels/beu_lvl1/untitled_0002.png",
+				"gfx/levels/beu_lvl1/untitled_0003.png",
 			}, 0*32)
 		drawfglevel = DrawLevelsTiled.new(
 			{
@@ -105,7 +105,7 @@ function LevelX:init()
 			self.tiny.spriteslist[el] = true
 			bworld:add(el, el.x, el.y, el.collbox.w, el.collbox.h)
 		end
-		for i = 1, 4 do
+		for i = 1, 8 do
 			el = ENme3.new(actionlayer, random(myappwidth*0.6, (mapdef.r-mapdef.l)), random(mapdef.t, mapdef.b-1*32),
 				random(12, 24)*16, random(myappheight*0.1), splatlayer)
 			self.tiny.tworld:addEntity(el)
@@ -113,14 +113,6 @@ function LevelX:init()
 			self.tiny.spriteslist[el] = true
 			bworld:add(el, el.x, el.y, el.collbox.w, el.collbox.h)
 		end
---		for i = 1, 2 do
---			el = ENme4.new(actionlayer, random(myappwidth*0.7, (mapdef.r-mapdef.l)), random(mapdef.t, mapdef.b-2*32),
---				random(12, 24)*16, random(myappheight*0.1), splatlayer)
---			self.tiny.tworld:addEntity(el)
---			self.tiny.numberofnmes += 1
---			self.tiny.spriteslist[el] = true
---			bworld:add(el, el.x, el.y, el.collbox.w, el.collbox.h)
---		end
 		-- some destructible objects (xspritelayer, x, y, dx, dy)
 		self.tiny.numberofdestructibleobjects = 8
 	elseif g_currlevel == 3 then
@@ -132,7 +124,7 @@ function LevelX:init()
 			self.tiny.spriteslist[el] = true
 			bworld:add(el, el.x, el.y, el.collbox.w, el.collbox.h)
 		end
-		for i = 1, 4 do
+		for i = 1, 8 do
 			el = ENme3.new(actionlayer, random(myappwidth*0.6, (mapdef.r-mapdef.l)), random(mapdef.t, mapdef.b-1*32),
 				random(12, 24)*16, random(myappheight*0.1), splatlayer)
 			self.tiny.tworld:addEntity(el)
@@ -149,8 +141,8 @@ function LevelX:init()
 			bworld:add(el, el.x, el.y, el.collbox.w, el.collbox.h)
 		end
 		-- a wagon
-		self.wagon = Bitmap.new(Texture.new("gfx/levels/beu_lvl3/subway_car.001_0013.png"))
-		self.wagon:setScale(0.65)
+		self.extragfx = Bitmap.new(Texture.new("gfx/levels/beu_lvl3/subway_car.001_0013.png"))
+		self.extragfx:setScale(0.65)
 		self.wagonr = mapdef.r
 		-- some destructible objects (xspritelayer, x, y, dx, dy)
 		self.tiny.numberofdestructibleobjects = 8
@@ -201,10 +193,10 @@ function LevelX:init()
 	self.camera:setFollowOffset(0, camfollowoffsety)
 --	self.camera:setDebug(true)
 	-- position
-	if self.wagon then self.wagon:setPosition(random(mapdef.r*0.5, mapdef.r), 1*myappheight/10) end
+	if self.extragfx then self.extragfx:setPosition(random(mapdef.r*0.5, mapdef.r), 1*myappheight/10) end
 	-- order
 	levelgfxlayer:addChild(drawbglevel)
-	if self.wagon then levelgfxlayer:addChild(self.wagon) end
+	if self.extragfx then levelgfxlayer:addChild(self.extragfx) end
 	levelgfxlayer:addChild(splatlayer)
 	levelgfxlayer:addChild(actionlayer)
 	if drawfglevel then levelgfxlayer:addChild(drawfglevel) end
@@ -255,7 +247,7 @@ function LevelX:onEnterFrame(e)
 			if g_currlevel > g_totallevel then
 				endleveltimer = 32 -- reset end level timer
 				g_currlevel = 1 -- reset current level
-				scenemanager:changeScene("win", 2, transitions[random(#transitions)], easings[random(#easings)])
+				scenemanager:changeScene("win", 3, transitions[random(#transitions)], easings[random(#easings)])
 			else
 				endleveltimer = 32 -- reset end level timer
 				scenemanager:changeScene("levelX", 2, transitions[1], easings[3])
@@ -267,11 +259,11 @@ function LevelX:onEnterFrame(e)
 			self.camera:update(dt)
 		end
 		self.tiny.tworld:update(dt) -- tiny world (last)
-		if self.wagon then
-			x = self.wagon:getX()
+		if self.extragfx then
+			x = self.extragfx:getX()
 			x -= 196*dt
-			if x < -self.wagon:getWidth() then x = self.wagonr end
-			self.wagon:setX(x)
+			if x < -self.extragfx:getWidth() then x = self.wagonr end
+			self.extragfx:setX(x)
 		end
 	end
 end
